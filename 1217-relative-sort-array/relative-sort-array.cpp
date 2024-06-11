@@ -28,7 +28,7 @@ public:
             }
         }
     
-        // sort(rest.begin(), rest.end());
+        sort(rest.begin(), rest.end());
         ans.insert(ans.end(), rest.begin(), rest.end());
         
         return ans;
