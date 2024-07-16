@@ -1,37 +1,5 @@
 class Solution {
 public:
-    vector<vector<int>> bfs_call(TreeNode* root, unordered_map<int, TreeNode*>& parentMap) {
-        vector<vector<int>> ans;
-        if (!root) return ans;
-        
-        queue<TreeNode*> q;
-        q.push(root);
-        
-        while (!q.empty()) {
-            vector<int> arr;
-            int n = q.size();
-            
-            for (int i = 0; i < n; i++) {
-                TreeNode* ele = q.front();
-                q.pop();
-                
-                if (ele->left != nullptr) {
-                    q.push(ele->left);
-                    parentMap[ele->left->val] = ele;
-                }
-                if (ele->right != nullptr) {
-                    q.push(ele->right);
-                    parentMap[ele->right->val] = ele;
-                }
-                
-                arr.push_back(ele->val);
-            }
-            ans.push_back(arr);
-        }
-        
-        return ans;
-    }
-
     bool findPath(TreeNode* root, int value, string& path) {
         if (!root) return false;
         if (root->val == value) return true;
@@ -49,9 +17,6 @@ public:
     }
 
     string getDirections(TreeNode* root, int startValue, int destValue) {
-        unordered_map<int, TreeNode*> parentMap;
-        bfs_call(root, parentMap);
-        
         string startPath, destPath;
         findPath(root, startValue, startPath);
         findPath(root, destValue, destPath);
