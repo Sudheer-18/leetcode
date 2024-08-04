@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 class Solution {
     public int rangeSum(int[] nums, int n, int left, int right) {
         int i = 0, j = 0, k = 0;
