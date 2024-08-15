@@ -1,28 +1,29 @@
+#include <vector>
+using namespace std;
 
 class Solution {
 public:
     bool lemonadeChange(vector<int>& bills) {
-        queue<int> five, ten;
+        int five = 0, ten = 0; 
         for(int bill : bills) {
             if(bill == 5) {
-                five.push(bill);
+                five++;
             } else if(bill == 10) {
-                if(five.empty()) return false;
-                five.pop();
-                ten.push(bill);
-            } else {
-                if(!ten.empty() && !five.empty()) {
-                    ten.pop();
-                    five.pop();
-                } else if(five.size() >= 3) {
-                    five.pop();
-                    five.pop();
-                    five.pop();
+                if(five == 0) return false; 
+                five--; 
+                ten++;  
+            } else { // bill == 20
+                if(ten > 0 && five > 0) { 
+                    ten--;
+                    five--;
+                } else if(five >= 3) { 
+                    five -= 3;
                 } else {
-                    return false;
+                    return false; 
                 }
             }
         }
-        return true;
+
+        return true; 
     }
 };
