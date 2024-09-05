@@ -25,6 +25,7 @@ public:
                         y = newY;
                         maxDist = max(maxDist, x * x + y * y);
                     } 
+                    else break;
                 }
             }
         }
