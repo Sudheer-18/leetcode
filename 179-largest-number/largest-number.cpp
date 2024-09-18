@@ -12,6 +12,7 @@ public:
         for(string s : numStrs) {
             res += s;
         }
-        return res[0] == '0' ? "0" : res;
+        if(res[0] == '0') return "0";
+        return res; 
     }
 };
