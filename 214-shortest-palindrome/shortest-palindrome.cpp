@@ -1,25 +1,22 @@
 class Solution {
 public:
     string shortestPalindrome(string s) {
-        int n = s.length();
-        if (n == 0) return s;
-        int prefix = 0;
-        for (int i = n - 1; i >= 0; i--) {
-            if (is_palindrome(s, 0, i)) {
-                prefix = i + 1;
-                break;
+        string rev_s = s;
+        reverse(rev_s.begin(), rev_s.end());
+        string combined = s + "#" + rev_s;
+        vector<int> lps(combined.size(), 0);
+        for (int i = 1; i < combined.size(); i++) {
+            int j = lps[i - 1];
+            while (j > 0 && combined[i] != combined[j]) {
+                j = lps[j - 1]; 
             }
+            if (combined[i] == combined[j]) {
+                j++;
+            }
+            lps[i] = j;
         }
-        string suffix = s.substr(prefix);
-        reverse(suffix.begin(), suffix.end());
-        return suffix + s;
-    } 
-    bool is_palindrome(string& s, int start, int end) {
-        while (start < end) {
-            if (s[start] != s[end]) return false;
-            start++;
-            end--;
-        }
-        return true;
+        int longest_palindrome_len = lps.back();
+        string to_add = rev_s.substr(0, s.size() - longest_palindrome_len);
+        return to_add + s;
     }
 };
