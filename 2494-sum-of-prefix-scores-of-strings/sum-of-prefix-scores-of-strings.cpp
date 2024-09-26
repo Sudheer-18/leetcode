@@ -11,7 +11,7 @@ public:
     Trie() {
         root = new TrieNode();
     }
-    void insert(const string& word) {
+    void insert(string& word) {
         TrieNode* node = root;
         for (char ch : word) {
             if (!node->children[ch - 'a']) {
@@ -21,7 +21,7 @@ public:
             node->prefixCount++; 
         }
     }
-    int getPrefixScore(const string& word) {
+    int getPrefixScore(string& word) {
         TrieNode* node = root;
         int score = 0;
         for (char ch : word) {
@@ -40,7 +40,7 @@ public:
             trie.insert(word);
         }
         vector<int> result;
-        for (const string& word : words) {
+        for (string word : words) {
             result.push_back(trie.getPrefixScore(word));
         }
         
