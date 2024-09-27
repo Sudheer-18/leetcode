@@ -1,6 +1,5 @@
 class Solution {
 public:
-    // Function to solve the Sudoku using backtracking
     void solveSudoku(vector<vector<char>>& board) {
         solve(board);
     }
