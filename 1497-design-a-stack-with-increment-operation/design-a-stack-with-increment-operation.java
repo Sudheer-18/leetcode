@@ -2,7 +2,7 @@ class CustomStack {
     int[] arr;
     int top = -1;
     public CustomStack(int maxSize) {
-        this.arr = new int[maxSize];
+        arr = new int[maxSize];
     }
     public void push(int x) {
         if (top < arr.length - 1) { 
