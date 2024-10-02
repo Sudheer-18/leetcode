@@ -1,6 +1,3 @@
-import java.util.Arrays;
-import java.util.HashMap;
-
 class Solution {
     public int[] arrayRankTransform(int[] arr) {
         int n = arr.length;
