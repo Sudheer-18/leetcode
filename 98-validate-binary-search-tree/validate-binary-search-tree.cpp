@@ -11,23 +11,14 @@
  */
 class Solution {
 public:
+    bool check_BST(TreeNode* root, TreeNode* min_nod, TreeNode* max_nod) {
+        if (root == nullptr) return true;
+        if (min_nod != nullptr && root->val <= min_nod->val) return false;
+        if (max_nod != nullptr && root->val >= max_nod->val) return false;
+        return check_BST(root->left, min_nod, root) && check_BST(root->right, root, max_nod);
+    }
+
     bool isValidBST(TreeNode* root) {
-        if (root == nullptr) return true;  
-        queue<pair<TreeNode*, pair<long long, long long>>> q;
-        q.push({root, {LLONG_MIN, LLONG_MAX}});
-        while (!q.empty()) {
-            TreeNode* node = q.front().first;
-            long long lower = q.front().second.first;
-            long long upper = q.front().second.second;
-            q.pop();
-            if (node->val <= lower || node->val >= upper) return false;
-            if (node->left != nullptr) {
-                q.push({node->left, {lower, node->val}});
-            }
-            if (node->right != nullptr) {
-                q.push({node->right, {node->val, upper}});
-            }
-        }
-        return true; 
+        return check_BST(root,nullptr,nullptr);
     }
 };
