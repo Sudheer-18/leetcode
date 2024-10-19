@@ -8,6 +8,6 @@ public:
         if (k < mid) return findKthBit(n - 1, k);
         char mirrored_bit = findKthBit(n - 1, length - k + 1);
         if (mirrored_bit == '0') return '1';  
-        return '00';  
+        return '0';  
     }
 };
