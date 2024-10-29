@@ -14,8 +14,8 @@ public:
     bool helper(TreeNode* nrml_pointer,TreeNode* mrror_pointer) {
         if(nrml_pointer == nullptr  && mrror_pointer == nullptr) return true;
         if(nrml_pointer == nullptr || mrror_pointer == nullptr) return false;
-        if(nrml_pointer->val != mrror_pointer->val) return false;
         bool left = helper(nrml_pointer->left,mrror_pointer->right);
+        if(nrml_pointer->val != mrror_pointer->val) return false;
         bool right = helper(nrml_pointer->right,mrror_pointer->left);
         return left && right;
     }
