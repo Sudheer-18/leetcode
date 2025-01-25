@@ -8,15 +8,13 @@ public:
             mp.insert({nums[i][0], {i, 0}});
             maxVal = max(maxVal, nums[i][0]);
         }
-
         int rs = 0, re = INT_MAX;
         while (true) {
             auto it = mp.begin();
             int minVal = it->first;
             int li = it->second.first;
             int ind = it->second.second;
-            if (maxVal - minVal < re - rs || 
-                (maxVal - minVal == re - rs && minVal < rs)) {
+            if (maxVal - minVal < re - rs || (maxVal - minVal == re - rs && minVal < rs)) {
                 rs = minVal;
                 re = maxVal;
             }
