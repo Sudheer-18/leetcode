@@ -1,36 +1,28 @@
 class Solution {
 public:
     void gameOfLife(vector<vector<int>>& board) {
-        int n=board.size();
-        int m=board[0].size();
-        for(int a=0;a<n;a++){
-            for(int b=0;b<m;b++){
-                int count=0;
-                for(int c=a-1;c<=a+1;c++){
-                    for(int d=b-1;d<=b+1;d++){
-                        if(c==a && d==b) continue;
-                        if(c>=0 && c<n && d>=0 && d<m && (board[c][d]==1 || board[c][d]==3
-                        )){
-                            count++;
+        int n = board.size(), m = board[0].size();
+        vector<vector<int>> ans(n, vector<int> (m, 0));
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                int once = 0, zero = 0;
+                for (int x = -1; x < 2; x++) {
+                    for (int y = -1; y < 2; y++) {
+                        int indI = i + x, indJ = j + y;
+                        if ((x != 0 || y != 0) && indI > -1 && indI < n && indJ > -1 && indJ < m) {
+                            if (board[indI][indJ]) once++;
+                            else zero++;
                         }
                     }
                 }
-                if(board[a][b]==1 && (count<2 || count>3)){
-                    board[a][b]=3;
-                }
-                if(board[a][b]==0 && count==3){
-                    board[a][b]=2;
-                }
-            }  
+                if (board[i][j] == 0 && once == 3) ans[i][j] = 1;
+                if (board[i][j] == 1 && (once == 2 || once == 3)) ans[i][j] = 1;
+            }
         }
-        for(int a=0;a<n;a++){
-            for(int b=0;b<m;b++){
-                if(board[a][b]==3){
-                    board[a][b]=0;
-                }
-                if(board[a][b]==2){
-                    board[a][b]=1;
-                }
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                board[i][j] = ans[i][j];
             }
         }
     }
