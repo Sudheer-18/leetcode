@@ -11,17 +11,21 @@ public:
     }
     int maximumSum(vector<int>& nums) {
         int n = nums.size();
-        map<int,vector<int>> mp;
+        map<int,priority_queue<int>> mp;
         for(int i = 0; i < n; i++) {
-            mp[DigitSum(nums[i])].push_back(nums[i]);
+            mp[DigitSum(nums[i])].push(nums[i]);
         }
         int cnt = 0;
         int MaxSum = 0;
         for(auto it : mp) {
             int size = it.second.size();
             int sum = 0;
-            sort(it.second.begin(),it.second.end());
-            if(size >= 2) sum = it.second[size - 1] + it.second[size - 2];
+            if(size >= 2) {
+                sum += it.second.top();
+                it.second.pop();
+                sum += it.second.top();
+                 it.second.pop();
+            }
             else {
                 cnt++;
             }
