@@ -6,21 +6,20 @@ public:
         for (int i = 0; i < n; i++) {
             pos[nums[i]].push_back(i);
         }
-        vector<int> res;
-        for (int q : queries) {
-            int val = nums[q];
+        for (int i = 0; i < queries.size(); i++) {
+            int val = nums[queries[i]];
             if (pos[val].size() < 2) {
-                res.push_back(-1);
+                queries[i] = -1;
             }
             else {
                 int ans = INT_MAX;
                 int l = 0, r = pos[val].size() - 1, mid;
                 while (l <= r) {
                     mid = (l + r) / 2;
-                    if (pos[val][mid] == q) {
+                    if (pos[val][mid] == queries[i]) {
                         break;
                     } 
-                    else if (pos[val][mid] < q) {
+                    else if (pos[val][mid] < queries[i]) {
                         l = mid + 1;
                     } 
                     else {
@@ -28,17 +27,17 @@ public:
                     }
                 }
                 if (mid > 0) {
-                    ans = min(ans, abs(pos[val][mid - 1] - q));
+                    ans = min(ans, abs(pos[val][mid - 1] - queries[i]));
                 }
                 if (mid < pos[val].size() - 1) {
-                    ans = min(ans, abs(pos[val][mid + 1] - q));
+                    ans = min(ans, abs(pos[val][mid + 1] - queries[i]));
                 }
                 int first = pos[val].front(), last = pos[val].back();
-                ans = min(ans, min(q + n - last, first + n - q));
-                res.push_back(ans);
+                ans = min(ans, min(queries[i] + n - last, first + n - queries[i]));
+                queries[i] = ans;
             }
         }
 
-        return res;
+        return queries;
     }
 };
