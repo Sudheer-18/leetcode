@@ -7,9 +7,7 @@ public:
        for(int i=0;i<n;i++){
            maxDay=max(maxDay,arr[i][1]);
        }
-       sort(arr.begin(), arr.end(), [](const vector<int>& a, const vector<int>& b) {
-            return a[0] < b[0];
-        });
+    sort(begin(arr),end(arr));
        int i=0;int ans=0;
        for(int d=1;i<=maxDay+1;d++){
          while(pq.size() && pq.top()<d){
