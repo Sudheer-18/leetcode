@@ -10,11 +10,6 @@ public:
         for(auto i : mp2) {
             mp1[i.second].push_back(i.first);
         }
-        for(auto i : mp1) {
-            cout<<i.first<<" ";
-            for(char ch : i.second) cout<<ch<<" ";
-            cout<<endl;
-        }
         int maxi = 0,key = 0;
         for(auto i : mp1) maxi = max(maxi,(int)i.second.size());
         for(auto i : mp1) {
