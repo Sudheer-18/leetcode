@@ -7,7 +7,6 @@ public:
     int countUnguarded(int n, int m, vector<vector<int>>& guards, vector<vector<int>>& walls) {
         vector<vector<int>> dir = {{0,1},{1,0},{0,-1},{-1,0}}; 
         vector<vector<int>> v(n, vector<int>(m, 0)); 
-        vector<vector<bool>> vis(n, vector<bool>(m, false));
         for (auto x : guards) v[x[0]][x[1]] = 1;
         for (auto x : walls)  v[x[0]][x[1]] = 2;
         queue<pair<int,int>> q;
